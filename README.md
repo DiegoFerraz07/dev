@@ -28,7 +28,7 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 ## Instalação
 -- Rodar comando composer install
 
--- Criaratalho para o'bash vendor/bin/sail'
+-- Criar atalho para o'bash vendor/bin/sail'
 
 composer require laravel/sail --dev
 
