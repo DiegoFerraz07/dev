@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('{pathMatch}', function () {
+Route::get('/{vue_capture?}', function () {
     return view('auth.login');
-})->where('pahtMatch', '.*');
+})->where('vue_capture', '[\/\w\.-]*');
+
 

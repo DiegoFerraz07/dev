@@ -1,6 +1,7 @@
 <template>
-    <main>
-
-        <router-view  to="/" name="login"/>
-    </main>
+    <router-view v-slot="{ Component, route }">
+        <div :key="route.name">
+            <Component :is="Component" />
+        </div>
+    </router-view>
 </template>

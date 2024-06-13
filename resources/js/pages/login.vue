@@ -51,9 +51,10 @@ export default {
 				console.log(apiresponse)
 				if(apiresponse.access_token){
 					this.$store.commit('setUserToken', apiresponse.access_token)
-					this.$routes.replace({ name: "dashboard" })
+					this.$router.replace({ name: "dashboard" })
 				}
 				console.log(this.$store.state)
+				console.log('tokenLogin: ', apiresponse.access_token)
 			}).catch(error => {
 				console.log(error)
 			});
