@@ -27,6 +27,7 @@ class UsersUpdateFormRequest extends FormRequest
             'name'=> 'required|string',
             'email'=> 'required|string',
             'password'=> 'required|string',
+            'remember_token' => 'required|string',
         ];
     }
 
@@ -40,7 +41,9 @@ class UsersUpdateFormRequest extends FormRequest
             'email.required' => "é obrigatório enviar um email",
             'email.string' => "é obrigatório que o email seja um texto",
             'password.required' => "é obrigatório enviar um password",
-            'password.string' => "é obrigatório que o password"
+            'password.string' => "é obrigatório que o password",
+            'remember_token.required' => 'é obrigatório enivar um token',
+            'remember_token.string' => 'é obrigatório que seja uma string',
         ];
     }
 }

@@ -1,6 +1,7 @@
 <template>
 	
     <h1 class="">Dashboard</h1>
+	<p>{{ this.$store.state.user ? this.$store.state.user.name : '' }}</p>
 	<div>
 		<table>
 			<thead>
@@ -19,6 +20,7 @@
                 </tbody>
 		</table>
 
+		<button @click="logout">Sair</button>
 	</div>
    
 </template>
@@ -34,12 +36,13 @@ export default {
 		}
     },
 	created(){
+		this.$store.commit('getUser')
 		this.getAllPosts()
 	},
 	methods: {
 		getAllPosts(){
 			let url = route('api.posts.index')
-			let token = this.$store.state.userToken;
+			let token = this.$store.state.userToken || localStorage.getItem('token');
 			axios.get(url, 
 			{ headers: { Authorization: 'Bearer ' + token } }
 			).then(response =>{
@@ -48,6 +51,18 @@ export default {
 			}).catch(error => {
 				console.log(error)
 			});
+		},
+		logout(){
+			let url = route('auth.logout')
+			let token = this.$store.state.userToken || localStorage.getItem('token');
+			axios.post(
+				url,
+				{},
+				{ headers: { Authorization: 'Bearer ' + token } }
+			).then(() =>{
+				this.$store.commit('clearAllState')
+				this.$router.replace({ name: "login" })
+			})
 		}
 	},
 }

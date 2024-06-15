@@ -32,7 +32,7 @@ Route::prefix('users')->middleware('jwt.auth')->group(function () {
     Route::post('/', [UsersController::class, 'store']);
 
     // Update users
-    Route::put('/{id}', [UsersController::class, 'update']);
+    Route::put('/{id}', [UsersController::class, 'update'])->name('api.users.update');
 
     // Delete users
     Route::delete('/{id}', [UsersController::class, 'delete']);
@@ -65,6 +65,9 @@ Route::post('/register', [AuthController::class, 'register'])->name('auth.regist
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 
 //search user
-Route::post('/me', [AuthController::class, 'me']);
+Route::post('/me', [AuthController::class, 'me'])->name('auth.me');
+
+//logout
+Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 

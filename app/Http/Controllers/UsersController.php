@@ -67,6 +67,5 @@ class UsersController extends Controller
         $updated = $userRepository->update($request);
         return new UsersResource(['saved' => $updated]);
     }
-
    
 }

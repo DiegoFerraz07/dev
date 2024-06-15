@@ -15,8 +15,8 @@ class PostsSeeder extends Seeder
     public function run(): void
     {
         $faker = \Faker\Factory::create('pt_BR');
-        $user = User::select('id')->inRandomOrder()->limit(1)->first();
         for ($i = 0; $i < 10; $i++) {
+            $user = User::select('id')->inRandomOrder()->first();
             Post::create(
                 [
                     'comments' => $faker->sentences(1, true),

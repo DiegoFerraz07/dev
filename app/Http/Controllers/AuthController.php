@@ -69,9 +69,9 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function refresh()
+    public function refresh($token, $user)
     {
-        return $this->respondWithToken(auth()->refresh());
+        return $this->respondWithToken($token, $user);
     }
 
     /**

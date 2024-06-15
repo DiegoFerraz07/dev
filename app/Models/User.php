@@ -25,6 +25,7 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'remember_token',
     ];
 
     /**
@@ -77,6 +78,7 @@ class User extends Authenticatable implements JWTSubject
         $this->name = $request->name;
         $this->email = $request->email;
         $this->password = $request->password;
+        $this->remember_token = $request-> rememberToken;
         return $this;
     }
 }

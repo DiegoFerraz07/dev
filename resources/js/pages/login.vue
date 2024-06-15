@@ -12,7 +12,7 @@
     </div>
     <div class="form-group">
         <label for="password">Senha</label>
-        <input type="text"
+        <input type="password"
             class="form-control"
 			v-model="user.password"
             required
@@ -21,7 +21,7 @@
     </div>
     <button @click="login" class="btn btn-success mt-2">Entrar</button>
     <div>
-        <a>Não possui conta? Cadastra-se já!</a>
+        <Router-link>não possui conta? Cadastra-se já!</Router-link>
     </div>
 </template>
 
@@ -43,6 +43,10 @@ export default {
 		login(){
 			let route = this.routeLogin;
 			console.log(route);
+			if(!this.user.email || !this.user.password){
+				alert('Por favor informe os dados de autenticação')
+				return
+			}
 			axios.post( 
 				route, 
 				this.user
@@ -51,6 +55,7 @@ export default {
 				console.log(apiresponse)
 				if(apiresponse.access_token){
 					this.$store.commit('setUserToken', apiresponse.access_token)
+					localStorage.setItem('token', apiresponse.access_token)
 					this.$router.replace({ name: "dashboard" })
 				}
 				console.log(this.$store.state)

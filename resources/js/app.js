@@ -8,4 +8,8 @@ import router from './routes/routes';
 import App from "./app.vue";
 
 
-createApp(App).use(router).use(store).use(ZiggyVue, Ziggy).mount("#app");
+createApp(App)
+	.use(router)
+	.use(store)
+	.use(ZiggyVue, Ziggy)
+	.mount("#app");
