@@ -10,11 +10,32 @@
 
 ### Criar atalho para o'bash vendor/bin/sail'
 
+```bash
 composer require laravel/sail --dev
+```
 
-```php artisan sail:install ```
+```bash
+	$ php artisan sail:install 
+```
 
-Pode usar este comando => ``` "alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'" ```que permitirar que utilize apenas o "sail up"
+Pode usar este comando => ``` bash
+ "alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'" ```que permitirar que utilize apenas o "sail up"
+```
+
+### Iniciando projeto
+
+Agora copie o **.env-example** para um arquivo **.env** e gere uma nova gave do projeto conforme os comandos abaixo:
+```bash
+  $ cp .env.example .env
+  $ php artisan key:generate
+```
+
+### Iniciando Banco de dados
+Agora crie o banco de dados e as tabelas com o seguinte comando:
+```bash
+  $ sail artisan migrate
+  $ sail artisan db:seed
+```
 
 ### Use o npm para instalar o vue 
 
