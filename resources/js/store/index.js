@@ -16,7 +16,8 @@ const store = new createStore({
         clearAllState(state) {
             state.userToken = null,
             state.user = null,
-            localStorage.removeItem('token', 'post', 'idPost')
+            localStorage.removeItem('token'),
+            localStorage.removeItem('idPost')
         },
         getUser(state){
             let url = route('auth.me')
