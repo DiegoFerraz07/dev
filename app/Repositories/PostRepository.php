@@ -6,7 +6,6 @@ use App\Http\Requests\Posts\PostAddFormRequest;
 use App\Http\Requests\Posts\PostUpdateFormRequest;
 use App\Interfaces\PostRepositoryInterface;
 use App\Models\Post;
-use Illuminate\Database\Eloquent\Collection;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
@@ -17,8 +16,9 @@ class PostRepository implements PostRepositoryInterface
      */
     public function getAll()
     {
-        return Post::all()
-        ->sortByDesc('created_at');
+        return Post::orderBy('created_at', 'DESC')
+            ->with('users')
+            ->get();
     }
     /**
      * Delete a specific post
@@ -69,7 +69,7 @@ class PostRepository implements PostRepositoryInterface
 
     /**
      * Update specific post
-     * @param PostUpdateAddFormRequest $request
+     * @param PostUpdateFormRequest $request
      *
      * @return bool
      */
@@ -77,7 +77,7 @@ class PostRepository implements PostRepositoryInterface
     {
         try {
             $post = $this->get($request->id);
-            $post->fillUser($request);
+            $post->fillPost($request);
             return $post->update();
         } catch(Exception $e) {
             Log::error($e->getMessage() . $e->getTraceAsString());

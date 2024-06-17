@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Http\Requests\Posts\PostAddFormRequest;
 use App\Http\Requests\Posts\PostUpdateFormRequest;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -49,10 +50,15 @@ class Post extends Authenticatable implements JWTSubject
         return [];
     }
 
+    public function users(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
     public function fillPost(PostAddFormRequest|PostUpdateFormRequest $request): Post
     {
         $this->comments = $request->comments;
-        $this->user_id = $request->userId;
+        $this->user_id = auth()->user()->id;
         return $this;
     }
 }

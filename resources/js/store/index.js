@@ -16,7 +16,7 @@ const store = new createStore({
         clearAllState(state) {
             state.userToken = null,
             state.user = null,
-            localStorage.removeItem('token')
+            localStorage.removeItem('token', 'post', 'idPost')
         },
         getUser(state){
             let url = route('auth.me')
@@ -33,7 +33,6 @@ const store = new createStore({
                 {headers: { Authorization : 'Bearer ' + token}}
             ).then(response =>{
                 const apiresponse = response.data
-                console.log('user: ', response)
                 state.user = apiresponse
                 state.userToken = token
             })

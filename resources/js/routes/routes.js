@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Login from "../pages/login.vue";
 import Dashboard from "../pages/dashboard.vue";
 import Register from '../pages/register.vue'
+import Edit from '../pages/editPost.vue'
 
 const routes = [
 	{
@@ -18,7 +19,13 @@ const routes = [
 		path: "/register",
 		name: "register",
 		component: Register,
-	}
+	},
+	{
+		path: "/edit",
+		name: "edit",
+		component: Edit,
+	},
+	
 
 ];
 const router = createRouter({

@@ -6,6 +6,7 @@
 
 # Instalação
 ### Rodar comando composer install
+```composer install```
 
 ### Criar atalho para o'bash vendor/bin/sail'
 
@@ -17,7 +18,8 @@ Pode usar este comando => ``` "alias sail='sh $([ -f sail ] && echo sail || echo
 
 ### Use o npm para instalar o vue 
 
-npm install vue@latest vue-loader@latest vue-router@4
+npm install 
 
- Use o comando composer require tightenco/ziggy para o laravel
+Use o comando composer require tightenco/ziggy para o laravel
 e depois use o npm i ziggy-js
+

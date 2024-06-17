@@ -45,14 +45,14 @@ Route::prefix('posts')->middleware('jwt.auth')->group(function (){
     // List all posts
     Route::get('/', [PostController::class, 'index'])->name('api.posts.index');
     
-    Route::delete('/delete{id}', [PostController::class, 'delete'])->name('api.posts.delete');
+    Route::delete('/delete', [PostController::class, 'delete'])->name('api.posts.delete');
     
     Route::get('/add', [PostController::class, 'add'])->name('api.posts.add');
 
     // Create new post
     Route::post('/store', [PostController::class, 'store'])->name('api.posts.store');
 
-    Route::get('/edit', [PostController::class, 'edit'])->name('api.posts.edit');
+    Route::get('/edit{id}', [PostController::class, 'edit'])->name('api.posts.edit');
 
     // Update post
     Route::put('/update', [PostController::class, 'update'])->name('api.posts.update'); 

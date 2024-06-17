@@ -58,8 +58,9 @@ class PostController extends Controller
     public function edit(PostEditFormRequest $request,  PostRepository $postRepository)
     {
         $post = $postRepository->get($request->id);
-        return view('pages.user.form', compact('post'));
+        return $post;
     }
+
 
     /**
      * Update the specified post.
@@ -67,7 +68,15 @@ class PostController extends Controller
     public function update(PostUpdateFormRequest $request, PostRepository $postRepository)
     {
         $updated = $postRepository->update($request);
-        return new PostsResource(['saved' => $updated]);
+        if($updated) {
+            return response()->json([
+                'success' => true
+            ]);
+        }
+        return response()->json([
+            'success' => false,
+            'message' => 'Erro ao tentar salvar'
+        ]);
     }
 
   
